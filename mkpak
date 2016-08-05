@@ -1,0 +1,19 @@
+#!/bin/bash
+# Creates a PAK file containing the VM modules of the game
+# For use with the Makefile, don't use directly!
+# Arguments:
+#  build directory
+#  basegame directory
+#  pak number
+# Note: Each path argument is relative to the current directory
+
+CWD=`pwd`
+ZIP=$CWD/misc/zip
+BUILD_DIR=$CWD/$1
+BASE_DIR=$CWD/$2
+PAK_NUM=$3
+
+cd $BASE_DIR
+$ZIP pak$PAK_NUM.zip ./vm/cgame.qvm ./vm/qagame.qvm ./vm/ui.qvm
+mv pak$PAK_NUM.zip $BUILD_DIR/pak$PAK_NUM.pk3
+cd $CWD
